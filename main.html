@@ -1,0 +1,1517 @@
+<main>
+<input type="radio" name="attr_sheet_tab" value="core" checked>
+<input type="radio" name="attr_sheet_tab" value="powers">
+<!-- CORE -->
+<div class="sheet-core-page">
+    <div class="top-row">
+        <div class="container-general">
+            <div class="entry logo">
+                <img src="https://imgur.com/aucmI7n.png">
+            </div>
+            <div class="entry name">
+                <input type="text" name="attr_character_name">
+                <span class="label">CHARACTER NAME</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_class_level">
+                <span class="label">CLASS & LEVEL</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_subclass">
+                <span class="label">SUBCLASS</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_deployment">
+                <span class="label">DEPLOYMENT</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_background">
+                <span class="label">BACKGROUND</span>
+            </div>
+            <div class="entry">
+                <div class="side-by-side">
+                    <input type="number" name="attr_xp">
+                    <span>/</span>
+                    <input type="number" name="attr_xp_next_level" readonly>
+                </div>
+                <span class="label">EXPERIENCE</span>
+            </div>
+            <div class="container-xp-bar entry">
+                <input class="xp-progress" type="hidden" name="attr_xp_progress" value="0"/>
+                <div class="xp-bar">
+                    <div class="xp-fill"></div>
+                </div>
+                <span class="label">XP TO NEXT LEVEL</span>
+                <div class="xp-bar-text"><span name="attr_xp_percent"></span>%</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="container-skills">
+            <div class="container-misc">
+                <input type="number" name="attr_luck_points"><span class="label">LUCK POINTS</span>
+            </div>
+            <div class="container-misc">
+                <input type="number" name="attr_proficiency_bonus"><span class="label">PROFICIENCY BONUS</span>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">STR</span>
+                    <input class="score" type="number" name="attr_str">
+                    <input class="modifier" type="text" name="attr_str_mod_str">
+                </div>
+                <div class="skills">
+                    <input class="proficiency" type="checkbox" name="attr_str_save_prof"><input class="save" type="number" name="attr_str_save"><span class="save label" >SAVING THROW</span>
+                    <input class="expertise" type="checkbox" name="attr_athletics_expert"><input class="proficiency" type="checkbox" name="attr_athletics_prof"><input type="number" name="attr_athletics"><span class="label">ATHLETICS</span>
+                </div>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">DEX</span>
+                    <input class="score" type="number" name="attr_dex">
+                    <input class="modifier" type="text" name="attr_dex_mod_str">
+                </div>
+                <div class="skills">
+                    <input class="proficiency" type="checkbox" name="attr_dex_save_prof"><input class="save" type="number" name="attr_dex_save"><span class="save label">SAVING THROW</span>
+                    <input class="expertise" type="checkbox" name="attr_acrobatics_expert"><input class="proficiency" type="checkbox" name="attr_acrobatics_prof"><input type="number" name="attr_acrobatics"><span class="label">ACROBATICS</span>
+                    <input class="expertise" type="checkbox" name="attr_sleight_of_hand_expert"><input class="proficiency" type="checkbox" name="attr_sleight_of_hand_prof"><input type="number" name="attr_sleight_of_hand"><span class="label">SLEIGHT OF HAND</span>
+                    <input class="expertise" type="checkbox" name="attr_stealth_expert"><input class="proficiency" type="checkbox" name="attr_stealth_prof"><input type="number" name="attr_stealth"><span class="label">STEALTH</span>
+                </div>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">CON</span>
+                    <input class="score" type="number" name="attr_con">
+                    <input class="modifier" type="text" name="attr_con_mod_str">
+                </div>
+                <div class="skills">
+                <input class="proficiency" type="checkbox" name="attr_con_save_prof"><input class="save" type="number" name="attr_con_save"><span class="save label">SAVING THROW</span>
+                </div>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">INT</span>
+                    <input class="score" type="number" name="attr_int">
+                    <input class="modifier" type="text" name="attr_int_mod_str">
+                </div>
+                <div class="skills">
+                    <input class="proficiency" type="checkbox" name="attr_int_save_prof"><input class="save" type="number" name="attr_int_save"><span class="save label">SAVING THROW</span>
+                    <input class="expertise" type="checkbox" name="attr_investigation_expert"><input class="proficiency" type="checkbox" name="attr_investigation_prof"><input type="number" name="attr_investigation"><span class="label">INVESTIGATION</span>
+                    <input class="expertise" type="checkbox" name="attr_lore_expert"><input class="proficiency" type="checkbox" name="attr_lore_prof"><input type="number" name="attr_lore"><span class="label">LORE</span>
+                    <input class="expertise" type="checkbox" name="attr_nature_expert"><input class="proficiency" type="checkbox" name="attr_nature_prof"><input type="number" name="attr_nature"><span class="label">NATURE</span>
+                    <input class="expertise" type="checkbox" name="attr_piloting_expert"><input class="proficiency" type="checkbox" name="attr_piloting_prof"><input type="number" name="attr_piloting"><span class="label">PILOTING</span>
+                    <input class="expertise" type="checkbox" name="attr_technology_expert"><input class="proficiency" type="checkbox" name="attr_technology_prof"><input type="number" name="attr_technology"><span class="label">TECHNOLOGY</span>
+                </div>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">WIS</span>
+                    <input class="score" type="number" name="attr_wis">
+                    <input class="modifier" type="text" name="attr_wis_mod_str">
+                </div>
+                <div class="skills">
+                    <input class="proficiency" type="checkbox" name="attr_wis_save_prof"><input class="save" type="number" name="attr_wis_save"><span class="save label">SAVING THROW</span>
+                    <input class="expertise" type="checkbox" name="attr_animal_handling_expert"><input class="proficiency" type="checkbox" name="attr_animal_handling_prof"><input type="number" name="attr_animal_handling"><span class="label">ANIMAL HANDLING</span>
+                    <input class="expertise" type="checkbox" name="attr_insight_expert"><input class="proficiency" type="checkbox" name="attr_insight_prof"><input type="number" name="attr_insight"><span class="label">INSIGHT</span>
+                    <input class="expertise" type="checkbox" name="attr_medicine_expert"><input class="proficiency" type="checkbox" name="attr_medicine_prof"><input type="number" name="attr_medicine"><span class="label">MEDICINE</span>
+                    <input class="expertise" type="checkbox" name="attr_perception_expert"><input class="proficiency" type="checkbox" name="attr_perception_prof"><input type="number" name="attr_perception"><span class="label">PERCEPTION</span>
+                    <input class="expertise" type="checkbox" name="attr_survival_expert"><input class="proficiency" type="checkbox" name="attr_survival_prof"><input type="number" name="attr_survival"><span class="label">SURVIVAL</span>
+                </div>
+            </div>
+            <div class="container-ability">
+                <div class="stat">
+                    <span class="label">CHA</span>
+                    <input class="score" type="number" name="attr_cha">
+                    <input class="modifier" type="text" name="attr_cha_mod_str">
+                </div>
+                <div class="skills">
+                    <input class="proficiency" type="checkbox" name="attr_cha_save_prof"><input class="save" type="number" name="attr_cha_save"><span class="save label">SAVING THROW</span>
+                    <input class="expertise" type="checkbox" name="attr_deception_expert"><input class="proficiency" type="checkbox" name="attr_deception_prof"><input type="number" name="attr_deception"><span class="label">DECEPTION</span>
+                    <input class="expertise" type="checkbox" name="attr_intimidation_expert"><input class="proficiency" type="checkbox" name="attr_intimidation_prof"><input type="number" name="attr_intimidation"><span class="label">INTIMIDATION</span>
+                    <input class="expertise" type="checkbox" name="attr_performance_expert"><input class="proficiency" type="checkbox" name="attr_performance_prof"><input type="number" name="attr_performance"><span class="label">PERFORMANCE</span>
+                    <input class="expertise" type="checkbox" name="attr_persuasion_expert"><input class="proficiency" type="checkbox" name="attr_persuasion_prof"><input type="number" name="attr_persuasion"><span class="label">PERSUASION</span>
+                </div>
+            </div>
+            <div class="container-misc">
+                <input type="number" name="attr_passive_perception"><span class="label">PASSIVE PERCEPTION</span>
+            </div>
+        </div>
+        <div class="container-other">
+            <div class="other-proficiencies">
+                <textarea name="attr_other_proficiencies"></textarea>
+            </div>
+            <span class="label">OTHER PROFICIENCIES</span>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="container-core">
+            <div class="entry">
+                <input type="number" name="attr_ac">
+                <span class="label">ARMOR<br>CLASS</span>
+            </div>
+            <div class="entry">
+                <input type="number" name="attr_init_bonus">
+                <span class="label">INITIATIVE</span>
+            </div>
+            <div class="entry">
+                <input type="number" name="attr_speed">
+                <span class="label">SPEED</span>
+            </div>
+        </div>
+        <div class="container-hp">
+            <div class="container-hp-bar">
+                <div class="hp-bar">
+                    <input class="hp-progress" type="hidden" name="attr_hp_progress" value="0"/>
+                    <input class="hp-temp-progress" type="hidden" name="attr_hp_temp_progress" value="0"/>
+                    <div class="hp-fill"></div>
+                    <div class="hp-fill-temp"></div>
+                </div>
+                <div class="hp-bar-text">
+                    <input class="hp-temp" type="hidden" name="attr_hp_temp" value="0"/>
+                    <input type="number" name="attr_hp" readonly>
+                    <div class="hp-temp-display">
+                        <span>+</span>
+                        <input type="number" name="attr_hp_temp" readonly>
+                    </div>
+                    <span>/</span>
+                    <input type="number" name="attr_hp_max" readonly>
+                </div>
+            </div>
+            <div class="current-hp">
+                <div class="maximum">
+                    <span class="label">Hit Point Maximum</span>
+                    <input type="number" name="attr_hp_max">
+                </div>
+                <input class="big-hp" type="number" name="attr_hp">
+                <span class="label">CURRENT HIT POINTS</span>
+            </div>
+            <div class="temporary-hp">
+                <input type="number" name="attr_hp_temp">
+                <span class="label">TEMPORARY HIT POINTS</span>
+            </div>
+            <div class="hit-dice">
+                <div class="total">
+                    <span class="label">Total</span>
+                    <input type="text" name="attr_hit_dice_total">
+                </div>
+                <input type="number" name="attr_hit_dice">
+                <span class="label">HIT DICE</span>
+            </div>
+            <div class="death-saves">
+                <div class="successes">
+                    <input type="hidden" name="attr_death_save_successes">
+                    <input type="checkbox" name="attr_death_save_success_1">
+                    <input type="checkbox" name="attr_death_save_success_2">
+                    <input type="checkbox" name="attr_death_save_success_3">
+                </div>
+                <div class="failures">
+                    <input type="hidden" name="attr_death_save_failures">
+                    <input type="checkbox" name="attr_death_save_failure_1">
+                    <input type="checkbox" name="attr_death_save_failure_2">
+                    <input type="checkbox" name="attr_death_save_failure_3">
+                </div>
+                <span class="label">DEATH SAVES</span>
+            </div>
+        </div>
+        <div class="container-attacks">
+            <div class="attack-labels">
+                <span>NAME</span>
+                <span class="label-bonus">ATK</span>
+                <span>DAMAGE/TYPE</span>
+            </div>
+            <fieldset class="repeating_attacks">
+                <div class="attack">
+                    <input type="checkbox" class="attack-edit-toggle"> <!-- Edit Toggle -->
+                    <input type="hidden" name="attr_attack_bonus">
+                    <input type="hidden" name="attr_attack_bonus_str">
+                    <input type="hidden" name="attr_damage_bonus">
+                    <input type="hidden" name="attr_damage_display">
+                    <div class="attack-display"> <!-- Display Mode -->
+                        <input class="attack-name" type="text" name="attr_name">
+                        <input class="attack-bonus" type="number" name="attr_attack_bonus" readonly>
+                        <input class="attack-damage" type="text" name="attr_damage_display" readonly>
+                        <button type="roll" class="attack-roll"
+                            value="&{template:attack} {{name=@{name}}} {{range=@{range}}} {{attack_roll=[[1d20 + @{attack_bonus}]]}} {{attack_bonus=@{attack_bonus_str}}} {{damage=[[@{base_damage} + @{damage_bonus}]]}} {{type=@{damage_type}}}">
+                        </button>
+                        <button type="roll" name="roll_damage" class="attack-damage-roll"
+                            value="&{template:damage} {{name=@{name}}} {{damage=[[@{base_damage} + @{damage_bonus}]]}} {{type=@{damage_type}}}">
+                        </button>
+                    </div>
+                    <div class="attack-editor"> <!-- Editor -->
+                        <label>NAME:</label>
+                        <input type="text" name="attr_name">
+                        <label>ATTACK:</label>
+                        <div>
+                            <input type="hidden" name="attr_attack">
+                            <select name="attr_ability">
+                                <option value="strength">Strength</option>
+                                <option value="dexterity">Dexterity</option>
+                                <option value="constitution">Constitution</option>
+                                <option value="intelligence">Intelligence</option>
+                                <option value="wisdom">Wisdom</option>
+                                <option value="charisma">Charisma</option>
+                            </select>
+                            <span>+</span>
+                            <input type="number" name="attr_misc_attack">
+                            <span>+</span>
+                            <select name="attr_proficiency">
+                                <option value="prof">Proficiency</option>
+                                <option value="0">0</option>
+                            </select>
+                        </div>
+                        <label>DAMAGE</label>
+                        <div>
+                            <input type="hidden" name="attr_damage">
+                            <input type="text" name="attr_base_damage">
+                            <span>+</span>
+                            <select name="attr_damage_ability">
+                                <option value="strength">Strength</option>
+                                <option value="dexterity">Dexterity</option>
+                                <option value="constitution">Constitution</option>
+                                <option value="intelligence">Intelligence</option>
+                                <option value="wisdom">Wisdom</option>
+                                <option value="charisma">Charisma</option>
+                            </select>
+                            <span>+</span>
+                            <input type="number" name="attr_misc_damage">
+                        </div>
+                        <label>TYPE:</label>
+                        <select name="attr_damage_type">
+                                <option value="Acid">Acid</option>
+                                <option value="Cold">Cold</option>
+                                <option value="Energy">Energy</option>
+                                <option value="Fire">Fire</option>
+                                <option value="Force">Force</option>
+                                <option value="Ion">Ion</option>
+                                <option value="Kinetic">Kinetic</option>
+                                <option value="Lightning">Lightning</option>
+                                <option value="Necrotic">Necrotic</option>
+                                <option value="Poison">Poison</option>
+                                <option value="Psychic">Psychic</option>
+                                <option value="Sonic">Sonic</option>
+                                <option value="True">True</option>
+                        </select>
+                        <label>RANGE:</label>
+                        <input type="text" name="attr_range">
+                        <label>NOTES:</label>
+                        <textarea name="attr_notes"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <span class="label">ATTACKS</span>
+        </div>
+        <div class="container-inventory">
+            <div class="inventory-misc">
+                <div class="credits">
+                    <span class="label">CR</span>
+                    <input type="text" name="attr_credits">
+                </div>
+                <div class="encumbrance">
+                    <span class="label">Total Weight</span>
+                    <input type="text" name="attr_encumbrance" readonly>
+                </div>
+            </div>
+            <div class="inventory-labels">
+                <span class="label-count">*</span><span class="label-name">NAME</span><span class="label-weight">lb</span>
+            </div>
+            <fieldset class="repeating_inventory">
+                <div class="item">
+                    <input class="item-count" type="number" name="attr_count">
+                    <input class="item-name" type="text" name="attr_name">
+                    <input class="item-weight" type="number" name="attr_weight" step=".01">
+                </div>
+            </fieldset>
+            <span class="label">INVENTORY</span>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="container-resources">
+            <fieldset class="repeating_resources">  
+                <div class="resources">
+                    <div class="resource">
+                        <div class="resource-total">
+                            <span class="label">Total</span>
+                            <input type="text" name="attr_left_total">
+                        </div>
+                        <input class="resource-count" type="number" name="attr_left_count">
+                        <input class="resource-name" type="text" name="attr_left_name">
+                    </div>
+                    <div class="resource">
+                        <div class="resource-total">
+                            <span class="label">Total</span>
+                            <input type="text" name="attr_right_total">
+                        </div>
+                        <input class="resource-count" type="number" name="attr_right_count">
+                        <input class="resource-name" type="text" name="attr_right_name">
+                    </div>
+                </div>
+            </fieldset>
+            <span class="label">RESOURCES</span>
+        </div>
+        <div class="container-traits">
+            <fieldset class="repeating_traits">
+                <div class="trait">
+                        <input type="checkbox" class="trait-edit-toggle"> <!-- Edit Toggle -->
+                        <button type="roll" name="roll_send_to_chat"
+                            value="&{template:trait} {{name=@{name}}} {{meta=@{source} - @{source_type}}} {{Type=@{source_type}}} {{description=@{description}}}">
+                        </button>
+                    <div class="trait-display"> <!-- Display Mode -->
+                        <details class="trait-details">
+                        <summary class="trait-header">
+                            <span class="trait-name" name="attr_name"></span>
+                            <span class="trait-source">
+                                <span name="attr_source"></span>
+                                <span class="source-type" name="attr_source_type"></span>
+                            </span>
+                        </summary>
+                        <span class="trait-description" name="attr_description"></span>
+                        </details>
+                    </div>
+                    <div class="trait-editor"> <!-- Editor -->
+                        <label>NAME:</label>
+                        <input type="text" name="attr_name">
+                        <label>SOURCE:</label>
+                        <select name="attr_source">
+                            <option>Class</option>
+                            <option>Subclass</option>
+                            <option>Background</option>
+                            <option>Deployment</option>
+                            <option>Feat</option>
+                            <option>Other</option>
+                        </select>
+                        <label>SOURCE TYPE:</label>
+                        <input type="text" name="attr_source_type">
+                        <label>DESCRIPTION:</label>
+                        <textarea name="attr_description"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <span class="label">FEATURES & TRAITS</span>
+        </div>
+    </div>
+</div>
+<!-- POWERS -->
+<div class="sheet-powers-page">
+    <div class="top-row">
+        <div class="container-general">
+            <div class="entry logo">
+                <img src="https://imgur.com/aucmI7n.png">
+            </div>
+            <div class="entry name">
+                <input type="text" name="attr_character_name">
+                <span class="label">CHARACTER NAME</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_class_level">
+                <span class="label">CLASS & LEVEL</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_subclass">
+                <span class="label">SUBCLASS</span>
+            </div>
+            <div class="entry">
+                <input type="text" name="attr_power_ability">
+                <span class="label">POWERCASTING ABILITY</span>
+            </div>
+            <div class="entry">
+                <input type="number" name="attr_power_attack_bonus">
+                <span class="label">POWER ATTACK BONUS</span>
+            </div>
+            <div class="entry">
+                <input type="number" name="attr_power_save_dc">
+                <span class="label">POWER SAVE DC</span>
+            </div>
+            <div class="entry">
+                <div class="side-by-side">
+                    <input type="number" name="attr_tech_points">
+                    <span>/</span>
+                    <input type="number" name="attr_tech_points_total" readonly>
+                </div>
+                <span class="label">TECH POINTS</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-powers at-will">
+        <div class="power-labels">
+            <span class="label-name">NAME</span>
+            <span>CASTING PERIOD</span>
+            <span class="label-range">RANGE</span>
+            <span>DURATION</span>
+        </div>
+        <fieldset class="repeating_powers-0">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">AT WILL</span>
+    </div>
+    <div class="container-powers level-1">
+        <fieldset class="repeating_powers-1">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 1</span>
+    </div>
+    <div class="container-powers level-2">
+        <fieldset class="repeating_powers-2">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 2</span>
+    </div>
+    <div class="container-powers level-3">
+        <fieldset class="repeating_powers-3">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 3</span>
+    </div>
+    <div class="container-powers level-4">
+        <fieldset class="repeating_powers-4">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 4</span>
+    </div>
+    <div class="container-powers level-5">
+        <fieldset class="repeating_powers-5">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 5</span>
+    </div>   
+    <div class="container-powers level-6">
+        <fieldset class="repeating_powers-6">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 6</span>
+    </div>
+    <div class="container-powers level-7">
+        <fieldset class="repeating_powers-7">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 7</span>
+    </div>
+    <div class="container-powers level-8">
+        <fieldset class="repeating_powers-8">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 8</span>
+    </div>
+    <div class="container-powers level-9">
+        <fieldset class="repeating_powers-9">
+            <div class="power">
+                <input class="concentration-flag" type="checkbox" name="attr_concentration_flag">
+                <input class="ritual-flag" type="checkbox" name="attr_ritual_flag">
+                <input type="checkbox" class="power-edit-toggle"> <!-- Edit Toggle -->
+                <div class="power-display"> <!-- Display Mode -->
+                    <details>
+                    <summary>
+                        <span class="power-name" name="attr_name"></span>
+                        <span class="power-casting-period" name="attr_casting_period"></span>
+                        <span class="power-range" name="attr_range"></span>
+                        <span class="power-duration" name="attr_duration"></span>
+                    </summary>
+                    <span class="power-description" name="attr_description"></span>
+                    </details>
+                </div>
+                <div class="power-editor"> <!-- Editor -->
+                    <div class="match-display">
+                        <div class="name">
+                            <label>NAME</label>
+                            <input type="text" name="attr_name">
+                        </div>
+                        <div>
+                            <label>CASTING TIME</label>
+                            <input type="text" name="attr_casting_period">
+                        </div>
+                        <div class="range">
+                            <label class="label-range">RANGE:</label>
+                            <input type="text" name="attr_range">
+                        </div>
+                        <div>
+                            <label>DURATION</label>
+                            <input type="text" name="attr_duration">
+                        </div>
+                    </div>
+                    <div class="side-by-side">
+                        <div>
+                            <label>CONCENTRATION</label>
+                            <select name="attr_concentration">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="ritual">
+                            <label>RITUAL</label>
+                            <select name="attr_ritual">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>NOTES</label>
+                            <input type="text" name="attr_notes">
+                        </div>
+                    </div>
+                    <label>DESCRIPTION</label>
+                    <textarea name="attr_description"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <span class="label">LEVEL 9</span>
+    </div>
+</div>
+</main>
+
+<!-- ROLL TEMPLATES -->
+<rolltemplate class="sheet-rolltemplate-trait">
+    <div class="sheet-trait-card">
+        <div class="sheet-trait-head">
+            <div class="sheet-trait-name">{{name}}</div>
+            <div class="sheet-trait-meta">{{meta}}</div>
+        </div>
+        <div class="sheet-trait-desc">{{description}}</div>
+    </div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-attack">
+    <div class="sheet-attack-card">
+        <div class="sheet-attack-head">
+            <div class="sheet-attack-name">{{name}}</div>
+            {{#range}}<div class="sheet-attack-range">{{range}}</div>{{/range}}
+        </div>
+        <div class="sheet-attack-body">
+            <div class="sheet-attack-roll-row">
+                <div class="sheet-attack-roll-number">
+                    <div class="sheet-attack-roll">{{attack_roll}}</div>
+                    {{#attack_bonus}}<div class="sheet-attack-bonus">({{attack_bonus}})</div>{{/attack_bonus}}
+                </div>
+                <div class="sheet-attack-label">To Hit</div>
+            </div>
+            {{#damage}}<div class="sheet-attack-damage-row">
+                <div class="sheet-attack-damage-roll">{{damage}}</div>
+                {{#type}}<div class="sheet-attack-damage-label">{{type}} Damage</div>{{/type}}
+            </div>{{/damage}}
+        </div>
+    </div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-damage">
+    <div class="sheet-damage-card">
+        <div class="sheet-damage-head">
+            <div class="sheet-damage-name">{{name}}</div>
+        </div>
+        <div class="sheet-damage-body">
+            <div class="sheet-damage-roll-row">
+                <div class="sheet-damage-roll">{{damage}}</div>
+                {{#type}}<div class="sheet-damage-label">{{type}} Damage</div>{{/type}}
+            </div>
+        </div>
+    </div>
+</rolltemplate>
+
+<!-- SHEETWORKERS -->
+<script type="text/worker">
+/* Simple Looped Worker from
+https://wiki.roll20.net/UniversalSheetWorkers */
+const stats = ['str','dex','con','int','wis','cha'];
+stats.forEach(function (stat) {
+    on("change:" + stat + " sheet:opened", function () {
+        getAttrs([stat], function (values) {
+            const stat_score = parseInt(values[stat])||0; // extracts the stat, assumes a score of 0 the not recognized
+            const stat_modifier = Math.floor(stat_score/2) -5; // gives a +0 at 10-11 and +/-1 per 2 point difference
+            const stat_modifier_string = '+' + String(stat_modifier);
+            if (stat_modifier >= 0) { setAttrs({ [stat + '_mod_str']: stat_modifier_string }); }
+            else { setAttrs({ [stat + '_mod_str']: String(stat_modifier) }); }
+            setAttrs({ [stat + '_mod']: stat_modifier });
+        });
+    });
+});
+
+// Level and Experience
+const xpLevels = [
+  300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000,
+  100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000
+];
+
+const profBonuses = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6];
+
+on("change:xp sheet:opened", function() {
+    getAttrs(["xp"], function(values) {
+        let xp = parseInt(values.xp, 10) || 0;
+        let next = xpLevels.find(level => xp < level);
+        if (next === undefined) next = xpLevels[xpLevels.length - 1];
+
+        let last = 0;
+        for (let i = 0; i < xpLevels.length; i++) {
+            if (xp >= xpLevels[i]) last = xpLevels[i];
+            else break;
+        }
+
+        let level = xpLevels.findIndex(levelXP => xp < levelXP) + 1;
+        if (level <= 0) level = 20;
+        if (level > 20) level = 20;
+
+        const proficiency = profBonuses[level - 1];
+
+        let percent = 100;
+        if (level < 20) {
+            const xpIntoLevel = xp - last;
+            const xpNeeded = next - last;
+            percent = Math.floor((xpIntoLevel / xpNeeded) * 100);
+        }
+
+        if (percent < 0) percent = 0;
+        if (percent > 100) percent = 100;
+
+        const progress = Math.round(percent / 5);
+
+        setAttrs({
+            level: level,
+            proficiency_bonus: proficiency,
+            xp_next_level: level < 20 ? next : xp,
+            xp_percent: percent,
+            xp_progress: progress
+        });
+    });
+});
+
+// Skills and Ability Scores
+const skillToAbility = {
+    athletics: "str",
+    acrobatics: "dex",
+    sleight_of_hand: "dex",
+    stealth: "dex",
+    investigation: "int",
+    lore: "int",
+    nature: "int",
+    piloting: "int",
+    technology: "int",
+    animal_handling: "wis",
+    insight: "wis",
+    medicine: "wis",
+    perception: "wis",
+    survival: "wis",
+    deception: "cha",
+    intimidation: "cha",
+    performance: "cha",
+    persuasion: "cha"
+};
+
+const skills = Object.keys(skillToAbility);
+
+const abilities = ["str", "dex", "con", "int", "wis", "cha"];
+
+const workerTriggers = [
+    "change:proficiency_bonus sheet:opened",
+    ...abilities.map(ability => `change:${ability}_mod`),
+    ...abilities.map(ability => `change:${ability}_save_prof`),
+    ...skills.map(skill => `change:${skill}_prof`),
+    ...skills.map(skill => `change:${skill}_expert`)
+].join(" ");
+
+on(workerTriggers, function() {
+    const attrsToGet = [
+        "proficiency_bonus",
+        ...abilities.map(ability => `${ability}_mod`),
+        ...abilities.map(ability => `${ability}_save_prof`),
+        ...skills.map(skill => `${skill}_prof`),
+        ...skills.map(skill => `${skill}_expert`)
+    ];
+    getAttrs(attrsToGet, function(values) {
+        const updates = {};
+        const profBonus = parseInt(values.proficiency_bonus, 10) || 0;
+        abilities.forEach(function(ability) {
+            const abilityMod = parseInt(values[`${ability}_mod`], 10) || 0;
+            const isSaveProficient = values[`${ability}_save_prof`] === "on";
+            updates[`${ability}_save`] = abilityMod + (isSaveProficient ? profBonus : 0);
+        });
+        skills.forEach(function (skill) {
+            const ability = skillToAbility[skill];
+            const abilityMod = parseInt(values[`${ability}_mod`], 10) || 0;
+            const isProficient = values[`${skill}_prof`] === "on";
+            const isExpert = values[`${skill}_expert`] === "on";
+            const total = abilityMod + (isProficient ? profBonus : 0) * (isExpert ? 2 : 1);
+            updates[`${skill}_base`] = abilityMod;
+            updates[skill] = total;
+        });
+    setAttrs(updates);
+  });
+});
+
+// Passive Perception
+on("change:perception sheet:opened", function () {
+    getAttrs(["perception"], function(values) {
+        let perception = parseInt(values.perception, 10) || 0;
+        const passive = perception + 10;
+        setAttrs({ passive_perception: passive });
+    });
+});
+
+// Hit Points
+on("change:hp change:hp_max change:hp_temp sheet:opened", function() {
+    getAttrs(["hp", "hp_max", "hp_temp"], function(values) {
+        let curr = parseInt(values.hp, 10) || 0;
+        let max = parseInt(values.hp_max, 10) || 0;
+        let temp = parseInt(values.hp_temp, 10) || 0;
+
+        if (max < 1) max = 1;
+        if (curr < 0) curr = 0;
+        if (curr > max) curr = max;
+        if (temp < 0) temp = 0;
+
+        let hpFrac = curr / max;
+        let tempFrac = temp / max;
+
+        // Cap temp display at 50% of the bar
+        if (tempFrac > 0.5) tempFrac = 0.5;
+
+        // Only compress if total would overflow
+        if (hpFrac + tempFrac > 1) hpFrac = 1 - tempFrac;
+
+        const hpPercent = Math.round(hpFrac * 100);
+        const tempPercent = Math.round(tempFrac * 100);
+
+        const hpStep = Math.round(hpPercent / 5);
+        const tempStep = Math.round(tempPercent / 5);
+
+        setAttrs({
+            hp_percent: hpPercent,
+            hp_progress: hpStep,
+            hp_temp_percent: tempPercent,
+            hp_temp_progress: tempStep
+        });
+    });
+});
+
+// Death Saves
+const handleTrackClick = (prefix, attrs, sourceAttribute) => {
+    let a = attrs[`${prefix}_1`] === "on";
+    let b = attrs[`${prefix}_2`] === "on";
+    let c = attrs[`${prefix}_3`] === "on";
+    switch (sourceAttribute) {
+        case `${prefix}_1`:
+            b = false;
+            c = false;
+            break;
+        case `${prefix}_2`:
+            if (b) { a = true; c = false; }
+            else { c = false; }
+            break;
+        case `${prefix}_3`:
+            if (c) { a = true; b = true; }
+            break;
+    }
+    const count = c ? 3 : b ? 2 : a ? 1 : 0;
+    return {
+        [`${prefix}_1`]: a ? "on" : "0",
+        [`${prefix}_2`]: b ? "on" : "0",
+        [`${prefix}_3`]: c ? "on" : "0",
+        [prefix === "death_save_success" ? "death_save_successes" : "death_save_failures"]: count
+    };
+};
+
+const normalizeTrackOnOpen = (prefix, attrs) => {
+    let a = attrs[`${prefix}_1`] === "on";
+    let b = attrs[`${prefix}_2`] === "on";
+    let c = attrs[`${prefix}_3`] === "on";
+    if (c) { a = true; b = true; }
+    else if (b) { a = true; }
+    if (!a) { b = false; c = false; }
+    else if (!b) { c = false; }
+    const count = c ? 3 : b ? 2 : a ? 1 : 0;
+    return {
+        [`${prefix}_1`]: a ? "on" : "0",
+        [`${prefix}_2`]: b ? "on" : "0",
+        [`${prefix}_3`]: c ? "on" : "0",
+        [prefix === "death_save_success" ? "death_save_successes" : "death_save_failures"]: count
+    };
+};
+
+on("change:death_save_success_1 change:death_save_success_2 change:death_save_success_3 " +
+   "change:death_save_failure_1 change:death_save_failure_2 change:death_save_failure_3 sheet:opened", function(eventInfo) {
+    getAttrs(["death_save_success_1", "death_save_success_2", "death_save_success_3",
+              "death_save_failure_1", "death_save_failure_2", "death_save_failure_3"], function(attrs) {
+        let updates = {};
+        if (eventInfo.sourceType === "sheetworker") return;
+        if (eventInfo.sourceAttribute && eventInfo.sourceAttribute.indexOf("death_save_success_") === 0) {
+            updates = handleTrackClick("death_save_success", attrs, eventInfo.sourceAttribute);
+        }
+        else if (eventInfo.sourceAttribute && eventInfo.sourceAttribute.indexOf("death_save_failure_") === 0) {
+            updates = handleTrackClick("death_save_failure", attrs, eventInfo.sourceAttribute);
+        }
+        else {
+            Object.assign(updates, normalizeTrackOnOpen("death_save_success", attrs));
+            Object.assign(updates, normalizeTrackOnOpen("death_save_failure", attrs));
+        }
+        setAttrs(updates);
+    });
+});
+
+// Attacks
+const getModFromAbility = (ability, attrs) => {
+    switch (ability) {
+        case "strength":
+            return parseInt(attrs.str_mod, 10) || 0;
+        case "dexterity":
+            return parseInt(attrs.dex_mod, 10) || 0;
+        case "constitution":
+            return parseInt(attrs.con_mod, 10) || 0;
+        case "intelligence":
+            return parseInt(attrs.int_mod, 10) || 0;
+        case "wisdom":
+            return parseInt(attrs.wis_mod, 10) || 0;
+        case "charisma":
+            return parseInt(attrs.cha_mod, 10) || 0;
+        default:
+            return 0;
+    }
+};
+
+on("change:str_mod change:dex_mod change:con_mod change:int_mod change:wis_mod change:cha_mod change:proficiency_bonus " +
+   "change:repeating_attacks:ability change:repeating_attacks:misc_attack change:repeating_attacks:proficiency " +
+   "change:repeating_attacks:base_damage change:repeating_attacks:damage_ability change:repeating_attacks:misc_damage " +
+   "change:repeating_attacks:damage_type remove:repeating_attacks sheet:opened", function () {
+    getSectionIDs("repeating_attacks", function (ids) {
+        const fields = ["str_mod", "dex_mod", "con_mod", "int_mod", "wis_mod", "cha_mod", "proficiency_bonus"];
+        ids.forEach(id => {
+            fields.push(`repeating_attacks_${id}_ability`);
+            fields.push(`repeating_attacks_${id}_misc_attack`);
+            fields.push(`repeating_attacks_${id}_proficiency`);
+            fields.push(`repeating_attacks_${id}_base_damage`);
+            fields.push(`repeating_attacks_${id}_damage_ability`);
+            fields.push(`repeating_attacks_${id}_misc_damage`);
+            fields.push(`repeating_attacks_${id}_damage_type`);
+        });
+        getAttrs(fields, function (attrs) {
+            const updates = {};
+            const pb = parseInt(attrs.proficiency_bonus, 10) || 0;
+            ids.forEach(id => {
+                const ability = attrs[`repeating_attacks_${id}_ability`] || "";
+                const miscAttack = parseInt(attrs[`repeating_attacks_${id}_misc_attack`], 10) || 0;
+                const proficiency = attrs[`repeating_attacks_${id}_proficiency`] || "0";
+                const baseDamage = attrs[`repeating_attacks_${id}_base_damage`] || "";
+                const damageAbility = attrs[`repeating_attacks_${id}_damage_ability`] || "";
+                const miscDamage = parseInt(attrs[`repeating_attacks_${id}_misc_damage`], 10) || 0;
+                const damageType = attrs[`repeating_attacks_${id}_damage_type`] || "";
+                const attackAbilityMod = getModFromAbility(ability, attrs);
+                const damageAbilityMod = getModFromAbility(damageAbility, attrs);
+                const proficiencyValue = proficiency === "prof" ? pb : (parseInt(proficiency, 10) || 0);
+                const totalAttack = attackAbilityMod + miscAttack + proficiencyValue;
+                const totalDamageBonus = damageAbilityMod + miscDamage;
+                let damageDisplay = baseDamage.trim();
+                if (totalDamageBonus > 0) {
+                    damageDisplay += `+${totalDamageBonus}`;
+                }
+                else if (totalDamageBonus < 0) {
+                    damageDisplay += `${Math.abs(totalDamageBonus)}`;
+                }
+                if (damageType) {
+                    damageDisplay += ` ${damageType}`;
+                }
+                updates[`repeating_attacks_${id}_attack_bonus`] = totalAttack;
+                updates[`repeating_attacks_${id}_attack_bonus_str`] = (totalAttack >= 0 ? "+" : "") + totalAttack;
+                updates[`repeating_attacks_${id}_damage_bonus`] = totalDamageBonus;
+                updates[`repeating_attacks_${id}_damage_display`] = damageDisplay.trim();
+            });
+        setAttrs(updates);
+        });
+    });
+});
+
+// Encumbrance
+on("change:repeating_inventory:count change:repeating_inventory:weight remove:repeating_inventory sheet:opened", function () {
+    getSectionIDs("repeating_inventory", function (ids) {
+        const fields = [];
+        ids.forEach(id => {
+            fields.push(`repeating_inventory_${id}_count`);
+            fields.push(`repeating_inventory_${id}_weight`);
+        });
+        getAttrs(fields, function (values) {
+            let total = 0;
+            ids.forEach(id => {
+                const count = parseFloat(values[`repeating_inventory_${id}_count`]) || 0;
+                const weight = parseFloat(values[`repeating_inventory_${id}_weight`]) || 0;
+                total += count * weight;
+            });
+            total = Math.round(total * 10) / 10;
+            setAttrs({ encumbrance: total });
+        });
+    });
+});
+
+// Powercasting Attack Bonus and Save DC
+const getPowerAbilityMod = (ability, attrs) => {
+    switch (ability) {
+        case "Strength":
+            return parseInt(attrs.str_mod, 10) || 0;
+        case "Dexterity":
+            return parseInt(attrs.dex_mod, 10) || 0;
+        case "Constitution":
+            return parseInt(attrs.con_mod, 10) || 0;
+        case "Intelligence":
+            return parseInt(attrs.int_mod, 10) || 0;
+        case "Wisdom":
+            return parseInt(attrs.wis_mod, 10) || 0;
+        case "Charisma":
+            return parseInt(attrs.cha_mod, 10) || 0;
+        default:
+            return 0;
+    }
+};
+
+on("change:power_ability change:proficiency_bonus change:str_mod change:dex_mod " +
+   "change:int_mod change:wis_mod change:cha_mod sheet:opened", function () {
+    getAttrs(["power_ability", "proficiency_bonus", "str_mod", "dex_mod",
+              "con_mod", "int_mod", "wis_mod", "cha_mod"], function (attrs) {
+        const ability = attrs.power_ability || "";
+        const prof = parseInt(attrs.proficiency_bonus, 10) || 0;
+        const mod = getPowerAbilityMod(ability, attrs);
+        const powerAttackBonus = mod + prof;
+        const powerSaveDC = 8 + prof + mod;
+        setAttrs({
+            power_attack_bonus: powerAttackBonus,
+            power_save_dc: powerSaveDC
+        });
+    });
+});
+
+
+// Ritual and Concentration Tags
+const powerSections = ["repeating_powers-0", "repeating_powers-1", "repeating_powers-2",
+    "repeating_powers-3", "repeating_powers-4", "repeating_powers-5", "repeating_powers-6",
+    "repeating_powers-7", "repeating_powers-8", "repeating_powers-9"];
+
+const powerSectionEvents = powerSections
+    .map(s => `change:${s}:concentration change:${s}:ritual`)
+    .join(" ");
+
+on(powerSectionEvents + " sheet:opened", function() {
+    powerSections.forEach(section => {
+        getSectionIDs(section, function(ids) {
+            if (!ids.length) return;
+            const fields = [];
+            ids.forEach(id => {
+                fields.push(`${section}_${id}_concentration`);
+                fields.push(`${section}_${id}_ritual`);
+            });
+            getAttrs(fields, function(values) {
+                const updates = {};
+                ids.forEach(id => {
+                    updates[`${section}_${id}_concentration_flag`] = values[`${section}_${id}_concentration`] === "yes" ? "on" : "";
+                    updates[`${section}_${id}_ritual_flag`]        = values[`${section}_${id}_ritual`]        === "yes" ? "on" : "";
+                });
+                setAttrs(updates);
+            });
+        });
+    });
+});
+
+</script>

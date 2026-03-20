@@ -1,0 +1,1392 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Orbitron:wght@400..900&family=Titillium+Web:ital@0;1&family=VT323&display=swap');
+
+/* --- Global Variables --- */
+:root {
+    --color-background: #1F1F1F; /* roll20 dark mode default */
+    --color-container-background: rgba(141, 86, 167, .16);
+    --color-container-border: rgba(141, 86, 167, .5);
+    --color-container-highlight: rgba(141, 86, 167, .84);
+    --color-primary: #702C91;
+    --color-primary-highlight: #8D56A7;
+    --color-text: #B3B3B3;
+    --color-text-highlight: #E6E6E6;
+    --font-code: "VT323", monospace;
+    --font-normal: "Titillium Web", sans-serif;
+    --font-heading: "Orbitron", serif; /* weight 400-900 */
+    --font-special: "Bungee", serif;
+}
+
+/* --- Hide Input Number Arrows --- */
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } /* Chrome, Safari, Edge, Opera */
+input[type=number] { -moz-appearance: textfield; } /* Firefox */
+
+/* --- Sheet Tabs --- */
+input[name="attr_sheet_tab"][value="core"]:checked ~ .sheet-powers-page { display: none; }
+
+input[name="attr_sheet_tab"][value="powers"]:checked ~ .sheet-core-page { display: none; }
+
+input[name="attr_sheet_tab"] {
+    appearance: none;
+    background: none !important;
+    border: none;
+    box-shadow: none !important;
+    opacity: .8;
+    outline: none !important;
+    z-index: 20;
+    margin: 2px;
+}
+
+input[name="attr_sheet_tab"][value="core"] { margin-left: 8px; }
+
+input[name="attr_sheet_tab"][value="core"]::after {
+    content: "CORE";
+    font-family:var(--font-heading);
+    font-weight: 500;
+}
+
+input[name="attr_sheet_tab"][value="powers"]::after {
+    content: "POWERS";
+    font-family:var(--font-heading);
+    font-weight: 500;
+}
+
+/* -------------- */
+/* ---- CORE ---- */
+/* -------------- */
+.sheet-core-page {
+    display: grid;
+    grid-template-columns: repeat(3, 264px); /* (800 - grid gap) / 3 = 264 */
+    grid-template-rows: min-content 1fr;
+    grid-gap: 4px;
+    grid-template-areas:
+        "top-row top-row top-row"
+        "col-1 col-2 col-3";
+    width: 800px;
+}
+
+.top-row { grid-area: top-row; }
+.col-1 { grid-area: col-1; }
+.col-2 { grid-area: col-2; }
+.col-3 { grid-area: col-3; }
+
+.col-1, .col-2, .col-3 { display: flex; flex-direction: column; row-gap: 4px; }
+
+/* Specify main to ignore Bio & Info, Attributes & Abilities tabs */
+main input {
+    border: none;
+    border-radius: 4px 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    height: 18px;
+    width: 100%;
+    outline: none;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+main input:focus { border: none; box-shadow: none; }
+
+main select {
+    border-radius: 4px 0 0;
+    height: 22px;
+    padding: 2px 4px;
+    width: 100%;
+}
+
+main span.label {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* --- XP and HP Bars --- */
+.xp-bar, .hp-bar {
+    border-radius: 4px 0;
+    display: flex;
+    flex-direction: row;
+    height: 22px;
+    opacity: .2;
+    transition: opacity .2s ease-in, opacity 1s ease-out;
+}
+
+.xp-fill, .hp-fill { border-radius: 4px 0 0; }
+
+.xp-fill, .hp-fill, .hp-fill-temp { height: 100%; width: 0%; transition: width 1s ease-in-out; }
+
+.hp-fill, .hp-fill-temp { flex: 0 0 auto; }
+
+.hp-temp[value="0"] ~ .hp-temp-display,
+.hp-temp[value="0"] ~ .hp-temp-display input[type="number"] { display:none; }
+
+.hp-temp-display { display: inline; }
+
+.container-xp-bar:hover .xp-bar, .container-hp:hover .hp-bar { opacity: .8; }
+
+.container-xp-bar:hover .xp-bar-text,
+.container-hp:hover .hp-bar-text,
+.container-hp:hover .hp-bar-text input[type="number"],
+.container-hp:hover .hp-bar-text span { color: var(--color-text-highlight); }
+
+.xp-bar-text, .hp-bar-text {
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    justify-content: center;
+    text-align: center;
+    z-index: 20;
+}
+
+.xp-bar-text { margin-top: -35px; }
+
+.hp-bar-text { margin-top: -22px; }
+
+/* Bar Colors */
+.container-xp-bar, .container-hp-bar {
+    --color-xp-bar-1: var(--color-container-background);
+    --color-xp-bar-2: var(--color-container-background);
+    --color-xp-fill-1: var(--color-primary);
+    --color-xp-fill-2: var(--color-primary-highlight);
+    --color-hp-bar-1: rgba(139, 0, 0, .2); /* DarkRed */
+    --color-hp-bar-2: rgba(178, 34, 34, .2); /* FireBrick */
+    --color-hp-fill-1: FireBrick;
+    --color-hp-fill-2: Crimson;
+    --color-hp-temp-1: DarkTurquoise;
+    --color-hp-temp-2: Turquoise;
+}
+
+.xp-bar { background: linear-gradient(to right, var(--color-xp-bar-1), var(--color-xp-bar-2)); }
+.xp-fill { background: linear-gradient(to right, var(--color-xp-fill-1), var(--color-xp-fill-2)); }
+.hp-bar { background: linear-gradient(to right, var(--color-hp-bar-1), var(--color-hp-bar-2)); }
+.hp-fill { background: linear-gradient(to right, var(--color-hp-fill-1), var(--color-hp-fill-2)); }
+.hp-fill-temp { background: linear-gradient(to right, var(--color-hp-temp-1), var(--color-hp-temp-2)); }
+
+/* ----------------- */
+/* ---- TOP ROW ---- */
+/* ----------------- */
+
+/* General stats: Class & Level, Background, etc. */
+.container-general  {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 8px;
+    padding: 4px;
+}
+
+.container-general .entry { display: flex; flex-direction: column; margin: 4px; }
+
+.container-general .entry input, .container-general .entry input[type="number"] {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    width: 100%;
+}
+
+/* Starstruck logo */
+.container-general .entry.logo {
+    grid-row: 1 / span 2;
+    position: relative;
+    top: 8px;
+    user-select: none;
+    z-index: 20;
+}
+
+/* Character Name */
+.container-general .entry.name { grid-column: 1; grid-row: 3; }
+
+/* Current XP out of XP to next level */
+.side-by-side { display: flex; flex-direction: row; }
+
+.side-by-side span { margin: 0 4px; }
+
+/* ------------------ */
+/* ---- COLUMN 1 ---- */
+/* ------------------ */
+
+/* --- Skills & Ability Scores --- */
+.container-skills { display: flex; flex-direction: column; padding: 4px; }
+
+/* Inspiration (luck points), proficiency, passive perception */
+.container-misc {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+    padding: 2px;
+}
+
+.container-misc input { padding: 0 6px; text-align: right; }
+
+.container-misc span.label {
+    border-left: 1px solid var(--color-text);
+    border-radius: 0;
+    font-size: 90%;
+    padding: 0 6px;
+    text-align: left;
+}
+
+/* Ability Scores */
+.container-ability {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+.container-ability input, .container-misc input { background: none; }
+
+.container-ability input:hover, .container-ability input:focus,
+.container-misc input:hover, .container-misc input:focus { background: none; box-shadow: none; }
+
+/* Individual ability */
+.container-ability .stat {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-ability .stat span.label { border-bottom: 1px solid var(--color-text); border-radius: 0; }
+
+.container-ability .stat .score { font-size: 16px; font-weight: 900; }
+
+.container-ability .stat .modifier {
+    font-family: var(--font-special);
+    font-size: 20px;
+    font-style: italic;
+    position: relative;
+    top: -2px;
+    right: 2px;
+}
+
+/* That ability's save and skills */
+.container-ability .skills { grid-column: 2; display: grid; grid-template-columns: 12px 12px 1fr 3fr; }
+
+.container-ability .skills input {
+    grid-column: 3;
+    font-size: 75%;
+    font-weight: 700;
+    height: 16px;
+    line-height: 16px;
+    position: relative;
+    top: 2px;
+    left: 8px;
+}
+
+.container-ability .skills span.label {
+    grid-column: 4;
+    font-weight: 400;
+    height: 16px;
+    line-height: 16px;
+    text-align: left;
+}
+
+.container-ability .skills span.save { font-weight: 900; }
+
+/* Proficiency checkbox */
+.container-ability .skills .proficiency {
+    grid-column: 2;
+    appearance: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    height: 2px;
+    line-height: 2px;
+    outline: none;
+    pointer-events: none;
+    position: relative;
+    top: 8px;
+    z-index: 20;
+}
+    
+.container-ability .proficiency::before {
+    font-family: "Pictos";
+    font-size: 10px;
+    color: var(--color-text);
+    content: "_"; /* dash */
+    opacity: .5;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: color .2s ease-in, opacity .2s ease-in, color 1s ease-out, opacity 1s ease-out;
+}
+
+.container-ability .proficiency:checked::before { content: "3"; /* check mark */ opacity: 1; }
+
+.container-ability:hover .proficiency:checked::before { color: var(--color-text-highlight); }
+
+/* Expertise checkbox */
+.container-ability .skills .expertise {
+    grid-column: 1;
+    appearance: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    height: 2px;
+    line-height: 2px;
+    outline: none;
+    pointer-events: none;
+    position: relative;
+    top: 8px;
+    z-index: 20;
+}
+    
+.container-ability .expertise::before {
+    font-family: "Pictos";
+    font-size: 10px;
+    color: var(--color-text);
+    content: "_"; /* dash */
+    opacity: .5;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: color .2s ease-in, opacity .2s ease-in, color 1s ease-out, opacity 1s ease-out;
+}
+
+.container-ability .expertise:checked::before { content: "S";  /* star */ opacity: 1; }
+
+.container-ability:hover .expertise:checked::before { color: var(--color-text-highlight); }
+
+/* --- Other Proficiencies --- */
+.container-other { display: flex; flex-direction: column; padding: 4px; }
+
+.container-other span.label { margin-top: -18px; pointer-events: none; }
+
+.other-proficiencies {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    margin: 4px;
+    padding: 0 4px;
+}
+
+.other-proficiencies textarea {
+    font-family: var(--font-heading);
+    background: none;
+    border: none;
+    border-radius: 4px 0;
+    color: var(--color-text);
+    resize: none;
+    width: 232px;
+}
+
+.other-proficiencies textarea:focus { outline: none; }
+
+/* ------------------ */
+/* ---- COLUMN 2 ---- */
+/* ------------------ */
+
+/* --- Core Stats --- */
+.container-core { display: grid; grid-template-columns: 1fr 86px 1fr; padding: 4px; }
+
+.container-core .entry {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+.container-core .entry input { font-size: 14px; align-self: center; background: none; }
+
+.container-core .entry input:hover,
+.container-core .entry input:focus { background: none; box-shadow: none; }
+
+.container-core .entry span.label {
+    font-size: 75%;
+    margin-top: auto;
+}
+
+/* --- Hit Points --- */
+.container-hp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content 1.5fr 1fr 1fr;
+    grid-template-areas:
+        "bar bar"
+        "hp hp"
+        "temp temp"
+        "dice save";
+    padding: 4px;
+}
+
+.container-hp .container-hp-bar { grid-area: bar; }
+.container-hp .current-hp { grid-area: hp; }
+.container-hp .temporary-hp { grid-area: temp; }
+.container-hp .hit-dice { grid-area: dice; }
+.container-hp .death-saves { grid-area: save; }
+
+.container-hp-bar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 4px;
+}
+
+.container-hp-bar input[type="number"],
+.container-hp-bar input[type="number"]:hover,
+.container-hp-bar input[type="number"]:focus { background: none; box-shadow: none; }
+
+.current-hp, .temporary-hp,
+.hit-dice, .death-saves {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+.current-hp span, .temporary-hp span,
+.hit-dice span, .death-saves span { margin-top: auto; }
+
+.current-hp input, .temporary-hp input, .hit-dice input { align-self: center; background: none; margin-top: auto; }
+
+.current-hp input:hover, .temporary-hp input:hover, .hit-dice input:hover,
+.death-saves input:hover, .current-hp input:focus, .temporary-hp input:focus,
+.hit-dice input:focus, .death-saves input:focus { background: none; box-shadow: none; }
+
+/* Current Hit Points */
+.current-hp .maximum {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8px;
+    padding: 0 4px;
+    text-align: center;
+}
+
+.current-hp .maximum span.label {
+    border-right: 1px solid var(--color-text);
+    border-radius: 0;
+    margin: 0 4px;
+    padding: 0 4px;
+    text-align: right;
+}
+
+.current-hp .maximum input {
+    font-size: 75%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.big-hp[type="number"] { font-family: var(--font-special); font-size: 32px; margin-top: -2px; }
+
+/* Temporary Hit Points */
+.temporary-hp input { font-family: var(--font-code); font-size: 28px; margin-top: -1px; }
+
+/* Hit Dice */
+.hit-dice { margin-right: 4px; }
+
+.hit-dice input[type="number"] { font-family: var(--font-code); font-size: 20px; margin-top: -4px; }
+
+.hit-dice .total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8px;
+    padding: 0 4px;
+}
+
+.hit-dice .total span.label {
+    border-right: 1px solid var(--color-text);
+    border-radius: 0;
+    margin: 0 4px;
+    padding: 0 4px;
+    text-align: right;
+}
+
+.hit-dice .total input {
+    font-size: 75%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* Death Saves */
+.death-saves { margin-left: 4px; }
+
+.death-saves input[type="checkbox"] {
+    appearance:none;
+    background:none;
+    border:none;
+    box-shadow:none;
+    outline: none;
+}
+
+.death-saves input[type="checkbox"]::after {
+    font-family: "Pictos";
+    color: var(--color-text);
+    content: "_"; /* dash */
+    position: relative;
+    top: -2px;
+    transition: color .2s ease-in, opacity .2s ease-in, color 1s ease-out, opacity 1s ease-out;
+}
+
+.successes input[type="checkbox"]:checked::after { content: "2"; /* circle check mark */ }
+
+.failures input[type="checkbox"]:checked::after { content: "D"; /* circle X */ }
+
+.successes, .failures { align-self: center; }
+
+.death-saves:hover .successes input[type="checkbox"]:checked::after,
+.death-saves:hover .failures input[type="checkbox"]:checked::after { color: var(--color-text-highlight); }
+
+/* --- Attacks & Casting --- */
+.container-attacks { display: flex; flex-direction: column; padding: 4px; }
+
+.container-attacks span.label { margin-top: -18px; pointer-events: none; }
+
+.attack-labels {
+    color: var(--color-text);
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 2.5fr;
+    font-family: var(--font-heading);
+    font-size: 65%;
+    font-weight: 700;
+    margin-bottom: -2px;
+    padding: 0 4px;
+    text-align: left;
+}
+
+.attack-labels span { margin-top: auto; padding: 0 4px; }
+
+.attack-labels .label-bonus { margin: 0 10px; text-align: center; }
+
+.attack-display { display: flex; flex-direction: row; margin: 4px; }
+
+.attack-display button[type="roll"].attack-roll,
+.attack-display button[type="roll"].attack-damage-roll {
+    border: none;
+    border-radius: 4px 0;
+    box-shadow: none;
+    height: 18px;
+    margin: 0;
+    opacity: 0;
+    padding: 2px 4px;
+    position: absolute;
+}
+
+/* Calculated absolute values */
+.attack-display button[type="roll"].attack-roll { width: 32.948px; right: 105.521px; }
+.attack-display button[type="roll"].attack-damage-roll { width: 89.521px; right: 4px; }
+
+.attack-display button[type="roll"]::before { content: ""; }
+
+.attack-display input {
+    background-color: var(--color-container-background);
+    font-size: 90%;
+    font-weight: 400;
+    padding: 2px 4px;
+}
+
+.attack-damage, .attack-name { text-align: left; }
+
+.attack-bonus[type="number"] { font-weight: 700; margin: 0 4px; text-align: center; }
+
+/* Attack Editor */
+.attack-editor {
+    background-color: var(--color-container-background);
+    display: none;
+    margin: 4px;
+    padding: 4px 6px;
+}
+
+.attack-editor:hover { background-color: var(--color-container-highlight); }
+
+.attack-editor div { display: flex; align-items: center; flex-direction: row; }
+
+.attack-editor input, .attack-editor select, .attack-editor textarea,
+.attack-editor input:hover, .attack-editor select:hover, .attack-editor textarea:hover,
+.attack-editor input:focus, .attack-editor select:focus, .attack-editor textarea:focus {
+    appearance: none;
+    background: white !important;
+    border: none;
+    box-shadow: none !important;
+    color: black !important;
+    outline: none;
+}
+
+.attack-editor input, .attack-editor select, .attack-editor textarea { font-family: var(--font-normal);}
+
+.attack-editor span { margin: 0 4px; }
+
+.attack-editor input, .attack-editor select, .attack-editor textarea { text-align: left; margin-bottom: 4px; }
+
+.attack-editor label {
+    color: var(--color-text-highlight);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: -2px;
+    padding: 0;
+}
+
+.attack-editor textarea { border-radius: 4px 0 0; box-sizing: border-box; margin: 2px auto 0; }
+
+.attack-edit-toggle:hover ~ .attack-editor { background-color: var(--color-container-highlight); }
+
+.attack-edit-toggle {
+    appearance:none;
+    background:none !important;
+    border:none;
+    box-shadow:none !important;
+    opacity: 0;
+    outline: none !important;
+    position: absolute;
+    right: 8px;
+    transition: opacity .2s ease-in, opacity 1s ease-out !important;
+    z-index: 20;
+}
+
+.attack-edit-toggle::after { font-family: "Pictos"; font-size: 13px; content: "("; /* locked */ }
+
+.attack-edit-toggle:checked::after { content: ")"; /* unlocked */ position: relative; left: 1px; }
+
+.attack:hover .attack-edit-toggle { opacity: 1; }
+
+.attack-edit-toggle:hover::after { color: var(--color-text-highlight); }
+
+.attack-edit-toggle:checked ~ .attack { background-color: var(--color-container-background); }
+
+.attack-edit-toggle:checked ~ .attack:hover { background-color: var(--color-container-highlight); }
+
+.attack-edit-toggle:checked ~ .attack-editor { display: block; }
+
+.attack-edit-toggle:checked ~ .attack-display { display: none; }
+
+/* --- Inventory --- */
+.container-inventory { display: flex; flex-direction: column; padding: 4px; }
+
+.container-inventory span.label { margin-top: -18px; pointer-events: none; }
+
+.inventory-misc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    margin: 4px;
+    padding: 0;
+}
+
+.inventory-misc div {
+    background-color: var(--color-container-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.inventory-misc span.label {
+    border-right: 1px solid var(--color-text);
+    border-radius: 0;
+    margin: 0;
+    padding: 0 6px;
+    text-align: right;
+}
+
+.inventory-misc input {
+    background: none;
+    font-size: 75%;
+    padding: 0 6px;
+    text-align: left;
+}
+
+.inventory-misc input:hover, .inventory-misc input:focus { background: none; box-shadow: none; }
+
+.inventory-misc .credits { border-radius: 4px 0; margin-right: 4px; }
+
+.inventory-misc .encumbrance { border-radius: 4px 0; margin-left: 4px; }
+
+.inventory-labels {
+    color: var(--color-text);
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    font-family: var(--font-heading);
+    font-size: 65%;
+    font-weight: 700;
+    margin-bottom: -2px;
+    padding: 0 4px;
+    text-align: center;
+}
+
+.inventory-labels span { margin-top: auto; padding: 0 4px; }
+
+.inventory-labels .label-count { font-family: "Pictos"; }
+
+.inventory-labels .label-name { margin: 0 4px; text-align: left; }
+
+.item { display: flex; flex-direction: row; margin: 4px; }
+
+.item input {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    font-size: 90%;
+    padding: 2px 4px;
+}
+
+.item-name {
+    margin: 0 4px;
+    text-align: left; }
+
+/* ------------------ */
+/* ---- COLUMN 3 ---- */
+/* ------------------ */
+
+/* --- Class Resources --- */
+.container-resources { display: flex; flex-direction: column; padding: 4px; }
+
+.container-resources span.label { margin-top: -18px; pointer-events: none; }
+
+.resources { display: grid; grid-template-columns: 1fr 1fr; }
+
+.resource {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+.resource input {
+    align-self: center;
+    background: none;
+    margin-top: auto;
+    padding: 0;
+}
+
+.resource input:hover, .resource input:focus { background: none; box-shadow: none; }
+
+.resource-count { font-family: var(--font-code); font-size: 20px; margin-top: -4px; }
+
+.resource-name {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 9.75px;
+    font-weight: 700;
+    margin-top: auto;
+    text-align: center;
+}
+
+.resource-total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8px;
+    padding: 0 4px;
+}
+
+.resource-total span.label {
+    border-right: 1px solid var(--color-text);
+    border-radius: 0;
+    margin: 0 4px;
+    padding: 0 4px;
+    text-align: right;
+}
+
+.resource-total input { font-size: 75%; margin: 0; text-align: left; }
+
+/* --- Features & Traits --- */
+.container-traits { display: flex; flex-direction: column; padding: 4px; }
+
+/* Moving the "Features & Traits" label up and making it unselectable */
+.container-traits span.label { margin-top: -18px; pointer-events: none; }
+
+.trait {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    color: var(--color-text);
+    font-size: 16px;
+    margin: 4px;
+    min-height: 14px;
+    padding: 4px 6px;
+}
+
+.trait-name { display: block; font-family: var(--font-special); }
+
+.trait-description { font-size: 12px; white-space: pre-wrap; }
+
+.trait-source {
+    display: block;
+    font-family: var(--font-code);
+    font-size: 13px;
+    margin-top: -2px;
+    text-align: left;
+}
+
+.trait-source .source-type:not(:empty)::before { content: "- " }
+
+/* Send to chat button */
+.trait button[type="roll"] {
+    appearance:none;
+    background:none !important;
+    border:none;
+    box-shadow:none !important;
+    opacity: 0;
+    outline: none !important;
+    position: absolute;
+    top: -4px; /* lines up with edit toggle */
+    right: 16px;
+    transition: opacity .2s ease-in, opacity 1s ease-out;
+    z-index: 0;
+}
+
+.trait button[type="roll"]::after {
+    color: var(--color-text);
+    content: "w"; /* chat icon */
+    font-family: "Pictos";
+    font-size: 12px; /* 1px smaller than lock/unlock looks nicer */
+    text-shadow: none;
+}
+
+.trait button[type="roll"]:hover::after { color: var(--color-text-highlight); }
+
+.trait:hover .trait-edit-toggle, .trait:hover button[type="roll"] { opacity: 1; }
+
+/* Editor */
+.trait-editor { display:none; }
+
+.trait-editor input, .trait-editor select, .trait-editor textarea { font-family: var(--font-normal); }
+
+.trait-editor input, .trait-editor select, .trait-editor textarea,
+.trait-editor input:hover, .trait-editor select:hover, .trait-editor textarea:hover,
+.trait-editor input:focus, .trait-editor select:focus, .trait-editor textarea:focus {
+    appearance: none;
+    background: white;
+    border: none;
+    box-shadow: none;
+    color: black;
+    outline: none;
+}
+
+.trait-editor input, .trait-editor select, .trait-editor textarea { text-align: left; margin-bottom: 4px; }
+
+.trait-editor label {
+    color: var(--color-text-highlight);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: -4px;
+    padding: 0;
+}
+
+.trait-editor textarea { border-radius: 4px 0 0; box-sizing: border-box; margin: 2px auto 0; }
+
+.trait-edit-toggle {
+    appearance:none;
+    background:none !important;
+    border:none;
+    box-shadow:none !important;
+    outline: none !important;
+    opacity: 0;
+    position: absolute;
+    top: 1px; /* lines up with roll button */
+    right: 8px;
+    transition: opacity .2s ease-in, opacity 1s ease-out;
+    z-index: 0;
+}
+
+.trait-edit-toggle::after {
+    font-family: "Pictos";
+    font-size: 13px; 
+    color: var(--color-text);
+    content: "("; /* locked */
+}
+
+.trait-edit-toggle:checked::after { content: ")"; /* unlocked */ position: relative; left: 1px; }
+
+.trait-edit-toggle:hover::after { color: var(--color-text-highlight); }
+
+.trait-edit-toggle:checked ~ .trait-editor { display:block; }
+
+.trait-edit-toggle:checked ~ .trait-display { display:none; }
+
+/* ---------------- */
+/* ---- POWERS ---- */
+/* ---------------- */
+.sheet-powers-page {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    width: 800px;
+}
+
+.container-powers { display: flex; flex-direction: column; padding: 4px; }
+
+.container-powers span.label { margin-top: -18px; pointer-events: none; }
+
+.power-labels {
+    color: var(--color-text);
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr;
+    font-family: var(--font-heading);
+    font-size: 65%;
+    font-weight: 700;
+    margin: 0 4px -4px;
+    text-align: center;
+}
+
+.power-labels span { border-radius: 4px 0; margin-top: auto; padding: 2px 8px; }
+
+.power-labels span.label-name { margin-right: 4px; text-align: left; }
+
+.power-labels span.label-range { margin: 0 4px; text-align: center; }
+
+/* Individual power */
+.power-display details summary {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    margin: 2px 4px;
+}
+
+.power-display details { text-align: center; }
+
+.power-display span {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    min-height: 18px;
+    padding: 2px 8px;
+    text-align: center;
+}
+
+span.power-description {
+    background: none;
+    padding: 0;
+    font-family: var(--font-normal);
+    white-space: pre-wrap;
+}
+
+.power:hover .power-description { background: none; box-shadow: none; }
+
+span.power-name { margin-right: 4px; text-align: left; }
+
+span.power-range { margin: 0 4px; }
+
+.concentration-flag, .ritual-flag { display: none; }
+
+.concentration-flag:checked ~ .power-display .power-duration::before {
+    font-family: "Pictos";
+    font-size: 13px;
+    content: "r"; /* loop */
+    margin-right: 4px;
+    vertical-align: top;
+}
+
+.ritual-flag:checked ~ .power-display .power-casting-period::after {
+    font-family: "Pictos";
+    font-size: 13px;
+    content: "t"; /* clock */
+    margin-left: 4px;
+    vertical-align: top;
+}
+
+/* Power Editor */
+.power-editor {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: none;
+    margin: 2px 4px;
+    padding: 4px 8px;
+}
+
+.power-editor .match-display {
+    color: var(--color-text);
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr;
+}
+
+.power-editor input, .power-editor select, .power-editor textarea { font-family: var(--font-normal); text-align: left; margin-bottom: 4px; }
+
+.power-editor input, .power-editor select, .power-editor textarea,
+.power-editor input:hover, .power-editor select:hover, .power-editor textarea:hover,
+.power-editor input:focus, .power-editor select:focus, .power-editor textarea:focus {
+    appearance: none;
+    background: white !important;
+    border: none;
+    box-shadow: none !important;
+    color: black !important;
+    outline: none;
+}
+
+.power-editor label {
+    color: var(--color-text-highlight);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: -2px;
+    padding: 0;
+}
+
+.power-editor span { margin: 0 4px; }
+
+.power-editor textarea { border-radius: 4px 0 0; box-sizing: border-box; margin: 2px auto 0; }
+
+
+.power-editor .side-by-side { display: grid; grid-template-columns: 1fr 1fr 3fr; }
+
+.power-editor .match-display div,
+.power-editor .side-by-side div { display: flex; flex-direction: column; }
+
+.power-editor .match-display label { margin: 0 4px -2px; text-align: center; }
+.power-editor .match-display input { margin: 0 4px; text-align: center; }
+
+.power-editor .match-display .name { margin-right: 4px; }
+
+.power-editor .match-display .name label,
+.power-editor .match-display .name input { margin-right: 4px; text-align: left; }
+
+.power-editor .match-display .range,
+.power-editor .side-by-side .ritual { margin: 0 4px 1px; } /* don't ask why 1 lines up with -2 */
+
+.power-editor:hover { background-color: var(--color-container-highlight); }
+
+.power-editor div { display: flex; align-items: center; flex-direction: row; }
+
+.power-edit-toggle:hover ~ .power-editor { background-color: var(--color-container-highlight); }
+
+.power-edit-toggle {
+    appearance:none;
+    background:none !important;
+    border:none;
+    box-shadow:none !important;
+    opacity: 0;
+    outline: none !important;
+    position: absolute;
+    right: 8px;
+    transition: opacity .2s ease-in, opacity 1s ease-out !important;
+    z-index: 20;
+}
+
+.power-edit-toggle::after { font-family: "Pictos"; font-size: 13px; content: "("; /* locked */ }
+
+.power-edit-toggle:checked::after { content: ")"; /* unlocked */ position: relative; left: 1px; }
+
+.power:hover .power-edit-toggle { opacity: 1; }
+
+.power-edit-toggle:hover::after { color: var(--color-text-highlight); }
+
+.power-edit-toggle:checked ~ .power { background-color: var(--color-container-background); }
+
+.power-edit-toggle:checked ~ .power:hover { background-color: var(--color-container-highlight); }
+
+.power-edit-toggle:checked ~ .power-editor { display: block; }
+
+.power-edit-toggle:checked ~ .power-display { display: none; }
+
+/* ----------------------- */
+/* ---- MISCELLANEOUS ---- */
+/* ----------------------- */
+
+/* --- Glow Effect --- */
+
+/* Transition */
+main input,
+.container-general .entry input,
+.container-misc,
+.container-ability,
+.other-proficiencies,
+.container-core .entry,
+.container-hp .current-hp,
+.container-hp .temporary-hp,
+.container-hp .hit-dice,
+.container-hp .death-saves,
+.attack input,
+.attack-editor,
+.credits,
+.encumbrance,
+.container-resources .resource,
+.trait,
+.power span,
+.power-editor {
+    transition: background-color .2s ease-in, box-shadow .2s ease-in, color .2s ease-in,
+                background-color 1s ease-out, box-shadow 1s ease-out, color 1s ease-out;
+}
+
+/* Text transition */
+.xp-bar-text,
+.container-misc input, .container-misc span.label,
+.container-ability .stat span.label, .container-ability .skills span.label,
+.container-other span.label, .container-other textarea,
+.container-core .entry span.label,
+.hp-bar-text span,
+.container-hp .current-hp span.label,
+.container-hp .temporary-hp span.label,
+.container-hp .hit-dice span.label,
+.container-hp .death-saves span.label,
+.attack-editor label,
+.encumbrance input, .encumbrance span.label,
+.container-resources input, .container-resources span.label,
+.credits input, .credits span.label,
+.trait-editor span.label {
+    transition: color .2s ease-in, color 1s ease-out;
+}
+
+/* Full glow */
+main input:hover, main input:focus,
+.container-general .entry input:hover, .container-general .entry input:focus,
+.container-general .entry input[type="number"]:hover, .container-general .entry input[type="number"]:focus,
+.container-misc:hover, 
+.container-ability:hover,
+.other-proficiencies:hover,
+.container-core .entry:hover,
+.container-hp .current-hp:hover,
+.container-hp .temporary-hp:hover,
+.container-hp .hit-dice:hover,
+.container-hp .death-saves:hover,
+.container-inventory .item:hover input,
+.attack:hover input,
+.attack-editor:hover, .attack-edit-toggle:hover ~ .attack-editor,
+.credits:hover,
+.encumbrance:hover,
+.container-resources .resource:hover,
+.trait:hover,
+.power:hover span {
+    background-color: var(--color-container-highlight);
+    box-shadow: 0 0 16px 8px var(--color-container-background);
+    color: var(--color-text-highlight);
+}
+
+/* Text only for glowing containers */
+.container-misc:hover input[type="number"], .container-misc:hover span.label,
+.container-ability:hover input, .container-ability:hover span.label,
+.attack-editor:hover label,
+.attack-edit-toggle:hover ~ .attack-editor label,
+.container-core .entry:hover input, .container-core .entry:hover span.label,
+.container-hp .current-hp:hover input, .container-hp .current-hp:hover span.label,
+.container-hp .temporary-hp:hover input, .container-hp .temporary-hp:hover span.label,
+.container-hp .hit-dice:hover input, .container-hp .hit-dice:hover span.label,
+.container-hp .death-saves:hover input, .container-hp .death-saves:hover span.label,
+.container-other:hover textarea, .container-other:hover span.label,
+.other-proficiencies:hover input, .other-proficiencies:hover span.label,
+.credits:hover input, .credits:hover span.label,
+.encumbrance:hover input, .encumbrance:hover span.label,
+.container-resources .resource:hover input, .container-resources .resource:hover span.label,
+.trait:hover, .trait:hover .trait-source, .trait:hover .trait-name,
+.trait-editor span.label { color: var(--color-text-highlight); }
+
+/* Container borders */
+.container-general, .container-skills,  .container-other, .container-core, .container-hp,
+.container-attacks, .container-inventory, .container-resources, .container-traits,
+.container-powers {
+    border: 2px solid var(--color-container-background);
+    border-radius: 4px 0;
+    transition: border .5s ease-in, border 1s ease-out;
+}
+
+.container-general:hover, .container-skills:hover, .container-other:hover, .container-core:hover, .container-hp:hover,
+.container-attacks:hover, .container-inventory:hover, .container-resources:hover, .container-traits:hover,
+.container-powers:hover {
+    border: 2px solid var(--color-container-border);
+}
+
+/* --- ROLL20 OVERWRITES --- */
+button[type="roll"] span, button[type="roll"]::before { display: none; }
+
+/* +Add and Modify buttons */
+.repcontrol_add, .repcontrol_edit, .repcontrol_done {
+    background: none !important;
+    border: none;
+    box-shadow: none !important;
+    color: var(--color-text);
+    margin: 0 8px;
+    outline: none !important;
+    padding: 2px 4px;
+    text-shadow: none;
+}
+
+.repcontrol_add:hover, .repcontrol_edit:hover, .repcontrol_done:hover,
+.repcontrol_add:active, .repcontrol_edit:active, .repcontrol_done:active {
+    background: none;
+    color: var(--color-text-highlight);
+    text-decoration: underline;
+}
+
+/* Put the Modify -> Move and Trashcan buttons in front of the Chat and Edit buttons */
+.repcontrol_del, .repcontrol_move { position: relative; z-index: 20; }
+
+/* White background dark mode fix */
+/* https://app.roll20.net/forum/post/11229891/help-cant-get-rid-of-the-default-white-background */
+.sheet-darkmode { background-color: #1f1f1f; color: #c0c0c0; }
+
+.sheet-darkmode .sheetform { background-color: #1f1f1f; }
+
+/* Roll template styles */
+.sheet-rolltemplate-trait .sheet-trait-card,
+.sheet-rolltemplate-attack .sheet-attack-card,
+.sheet-rolltemplate-damage .sheet-damage-card {
+    border: 1px solid rgba(112, 32, 130, 1);
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.sheet-rolltemplate-trait .sheet-trait-head,
+.sheet-rolltemplate-attack .sheet-attack-head,
+.sheet-rolltemplate-damage .sheet-damage-head {
+    background-color: rgba(112, 32, 130, 1);
+    color: white;
+    font-weight: 300;
+    padding: 5px;
+}
+
+.sheet-rolltemplate-trait .sheet-trait-name,
+.sheet-rolltemplate-attack .sheet-attack-name,
+.sheet-rolltemplate-damage .sheet-damage-name { font-size: 1.1em; font-weight: bold; }
+
+.sheet-rolltemplate-trait .sheet-trait-meta { font-size: .9em; }
+
+.sheet-rolltemplate-attack .sheet-attack-range { font-size: .9em; font-style: italic; }
+
+.sheet-rolltemplate-trait .sheet-trait-desc {
+    background-color: #1F1F1F;
+    color: #B3B3B3;
+    font-size: 1.05em;
+    line-height: 1.4em;
+    padding: 5px;
+}
+
+.sheet-rolltemplate-attack .sheet-attack-body { background-color: #1F1F1F; }
+
+.sheet-rolltemplate-attack .sheet-attack-roll-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid rgba(112, 32, 130, 0.4);
+}
+
+.sheet-rolltemplate-attack .sheet-attack-roll-number { display: flex; align-items: baseline; gap: 4px; }
+
+.sheet-rolltemplate-attack .sheet-attack-roll { color: white; font-size: 1.5em; font-weight: bold; }
+
+.sheet-rolltemplate-attack .sheet-attack-bonus { color: white; font-size: 1.1em; font-weight: normal; }
+
+.sheet-rolltemplate-attack .sheet-attack-label { color: #B3B3B3; font-size: .9em; }
+
+.sheet-rolltemplate-attack .sheet-attack-roll .inlinerollresult,
+.sheet-rolltemplate-attack .sheet-attack-damage-roll .inlinerollresult,
+.sheet-rolltemplate-damage .sheet-damage-roll .inlinerollresult {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    padding: 0;
+}
+
+.sheet-rolltemplate-attack .sheet-attack-damage-row {
+    background-color: #353535;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.sheet-rolltemplate-attack .sheet-attack-damage-roll { color: white; font-size: 1.5em; font-weight: bold; }
+
+.sheet-rolltemplate-attack .sheet-attack-damage-label { color: #B3B3B3; font-size: .9em; }
+
+.sheet-rolltemplate-damage .sheet-damage-body { background-color: #1F1F1F; }
+
+.sheet-rolltemplate-damage .sheet-damage-roll-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.sheet-rolltemplate-damage .sheet-damage-roll { color: white; font-size: 1.5em; font-weight: bold; }
+
+.sheet-rolltemplate-damage .sheet-damage-label { color: #B3B3B3; font-size: .9em; }
+
+/* --- Width Mappings --- */
+.xp-progress[value="0"]  ~ .xp-bar .xp-fill { width: 0%; }
+.xp-progress[value="1"]  ~ .xp-bar .xp-fill { width: 5%; }
+.xp-progress[value="2"]  ~ .xp-bar .xp-fill { width: 10%; }
+.xp-progress[value="3"]  ~ .xp-bar .xp-fill { width: 15%; }
+.xp-progress[value="4"]  ~ .xp-bar .xp-fill { width: 20%; }
+.xp-progress[value="5"]  ~ .xp-bar .xp-fill { width: 25%; }
+
+.xp-progress[value="6"]  ~ .xp-bar .xp-fill { width: 30%; }
+.xp-progress[value="7"]  ~ .xp-bar .xp-fill { width: 35%; }
+.xp-progress[value="8"]  ~ .xp-bar .xp-fill { width: 40%; }
+.xp-progress[value="9"]  ~ .xp-bar .xp-fill { width: 45%; }
+.xp-progress[value="10"] ~ .xp-bar .xp-fill { width: 50%; }
+
+.xp-progress[value="11"] ~ .xp-bar .xp-fill { width: 55%; }
+.xp-progress[value="12"] ~ .xp-bar .xp-fill { width: 60%; }
+.xp-progress[value="13"] ~ .xp-bar .xp-fill { width: 65%; }
+.xp-progress[value="14"] ~ .xp-bar .xp-fill { width: 70%; }
+.xp-progress[value="15"] ~ .xp-bar .xp-fill { width: 75%; }
+
+.xp-progress[value="16"] ~ .xp-bar .xp-fill { width: 80%; }
+.xp-progress[value="17"] ~ .xp-bar .xp-fill { width: 85%; }
+.xp-progress[value="18"] ~ .xp-bar .xp-fill { width: 90%; }
+.xp-progress[value="19"] ~ .xp-bar .xp-fill { width: 95%; }
+.xp-progress[value="20"] ~ .xp-bar .xp-fill { width: 100%; }
+
+.hp-bar .hp-progress[value="0"] ~ .hp-fill { width: 0%; }
+.hp-bar .hp-progress[value="1"] ~ .hp-fill { width: 5%; }
+.hp-bar .hp-progress[value="2"] ~ .hp-fill { width: 10%; }
+.hp-bar .hp-progress[value="3"] ~ .hp-fill { width: 15%; }
+.hp-bar .hp-progress[value="4"] ~ .hp-fill { width: 20%; }
+.hp-bar .hp-progress[value="5"] ~ .hp-fill { width: 25%; }
+
+.hp-bar .hp-progress[value="6"] ~ .hp-fill { width: 30%; }
+.hp-bar .hp-progress[value="7"] ~ .hp-fill { width: 35%; }
+.hp-bar .hp-progress[value="8"] ~ .hp-fill { width: 40%; }
+.hp-bar .hp-progress[value="9"] ~ .hp-fill { width: 45%; }
+.hp-bar .hp-progress[value="10"] ~ .hp-fill { width: 50%; }
+
+.hp-bar .hp-progress[value="11"] ~ .hp-fill { width: 55%; }
+.hp-bar .hp-progress[value="12"] ~ .hp-fill { width: 60%; }
+.hp-bar .hp-progress[value="13"] ~ .hp-fill { width: 65%; }
+.hp-bar .hp-progress[value="14"] ~ .hp-fill { width: 70%; }
+.hp-bar .hp-progress[value="15"] ~ .hp-fill { width: 75%; }
+
+.hp-bar .hp-progress[value="16"] ~ .hp-fill { width: 80%; }
+.hp-bar .hp-progress[value="17"] ~ .hp-fill { width: 85%; }
+.hp-bar .hp-progress[value="18"] ~ .hp-fill { width: 90%; }
+.hp-bar .hp-progress[value="19"] ~ .hp-fill { width: 95%; }
+.hp-bar .hp-progress[value="20"] ~ .hp-fill { width: 100%; }
+
+.hp-bar .hp-temp-progress[value="0"] ~ .hp-fill-temp { width: 0%; }
+.hp-bar .hp-temp-progress[value="1"] ~ .hp-fill-temp { width: 5%; }
+.hp-bar .hp-temp-progress[value="2"] ~ .hp-fill-temp { width: 10%; }
+.hp-bar .hp-temp-progress[value="3"] ~ .hp-fill-temp { width: 15%; }
+.hp-bar .hp-temp-progress[value="4"] ~ .hp-fill-temp { width: 20%; }
+.hp-bar .hp-temp-progress[value="5"] ~ .hp-fill-temp { width: 25%; }
+
+.hp-bar .hp-temp-progress[value="6"] ~ .hp-fill-temp { width: 30%; }
+.hp-bar .hp-temp-progress[value="7"] ~ .hp-fill-temp { width: 35%; }
+.hp-bar .hp-temp-progress[value="8"] ~ .hp-fill-temp { width: 40%; }
+.hp-bar .hp-temp-progress[value="9"] ~ .hp-fill-temp { width: 45%; }
+.hp-bar .hp-temp-progress[value="10"] ~ .hp-fill-temp { width: 50%; }
+
+.hp-bar .hp-temp-progress[value="11"] ~ .hp-fill-temp { width: 55%; }
+.hp-bar .hp-temp-progress[value="12"] ~ .hp-fill-temp { width: 60%; }
+.hp-bar .hp-temp-progress[value="13"] ~ .hp-fill-temp { width: 65%; }
+.hp-bar .hp-temp-progress[value="14"] ~ .hp-fill-temp { width: 70%; }
+.hp-bar .hp-temp-progress[value="15"] ~ .hp-fill-temp { width: 75%; }
+
+.hp-bar .hp-temp-progress[value="16"] ~ .hp-fill-temp { width: 80%; }
+.hp-bar .hp-temp-progress[value="17"] ~ .hp-fill-temp { width: 85%; }
+.hp-bar .hp-temp-progress[value="18"] ~ .hp-fill-temp { width: 90%; }
+.hp-bar .hp-temp-progress[value="19"] ~ .hp-fill-temp { width: 95%; }
+.hp-bar .hp-temp-progress[value="20"] ~ .hp-fill-temp { width: 100%; }
