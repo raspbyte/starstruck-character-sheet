@@ -369,26 +369,27 @@ input[name="attr_piloting_cha_mode"]:checked ~ .piloting-cha { display: inline; 
 
 .container-other span.label { margin-top: -18px; pointer-events: none; }
 
-/* .other-proficiencies {
+.other-proficiencies {
     background-color: var(--color-container-background);
     border-radius: 4px 0;
     margin: 4px;
     padding: 0 4px;
-} */
+}
 
-.other-proficiency input { background-color: var(--color-container-background); margin: 2px 4px; width: 244px; }
+/* .other-proficiency input { background-color: var(--color-container-background); margin: 2px 4px; text-align: left; width: 244px; } */
 
-/* .other-proficiencies textarea {
+.other-proficiencies textarea {
     font-family: var(--font-heading);
     background: none;
     border: none;
     border-radius: 4px 0;
     color: var(--color-text);
+    height: 220px;
     resize: none;
     width: 232px;
 }
 
-.other-proficiencies textarea:focus { outline: none; } */
+.other-proficiencies textarea:focus { outline: none; }
 
 /* ------------------ */
 /* ---- COLUMN 2 ---- */
