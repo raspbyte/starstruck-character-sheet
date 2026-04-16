@@ -85,6 +85,7 @@ main input {
     outline: none;
     padding: 2px 4px;
     text-align: center;
+    text-overflow: ellipsis;
 }
 
 main input:focus { border: none; box-shadow: none; }
@@ -357,19 +358,27 @@ main span.label {
 
 .container-ability:hover .expertise:checked::before { color: var(--color-text-highlight); }
 
+/* Charisma Piloting */
+.piloting-cha { display: none; }
+input[name="attr_piloting_cha_mode"] { display: none; }
+input[name="attr_piloting_cha_mode"]:checked ~ .piloting-int { display: none; }
+input[name="attr_piloting_cha_mode"]:checked ~ .piloting-cha { display: inline; }
+
 /* --- Other Proficiencies --- */
 .container-other { display: flex; flex-direction: column; padding: 4px; }
 
 .container-other span.label { margin-top: -18px; pointer-events: none; }
 
-.other-proficiencies {
+/* .other-proficiencies {
     background-color: var(--color-container-background);
     border-radius: 4px 0;
     margin: 4px;
     padding: 0 4px;
-}
+} */
 
-.other-proficiencies textarea {
+.other-proficiency input { background-color: var(--color-container-background); margin: 2px 4px; width: 244px; }
+
+/* .other-proficiencies textarea {
     font-family: var(--font-heading);
     background: none;
     border: none;
@@ -379,7 +388,7 @@ main span.label {
     width: 232px;
 }
 
-.other-proficiencies textarea:focus { outline: none; }
+.other-proficiencies textarea:focus { outline: none; } */
 
 /* ------------------ */
 /* ---- COLUMN 2 ---- */
@@ -600,6 +609,7 @@ main span.label {
 /* Attack Editor */
 .attack-editor {
     background-color: var(--color-container-background);
+    border-radius: 4px 0;
     display: none;
     margin: 4px;
     padding: 4px 6px;
@@ -620,11 +630,9 @@ main span.label {
     outline: none;
 }
 
-.attack-editor input, .attack-editor select, .attack-editor textarea { font-family: var(--font-normal);}
+.attack-editor input, .attack-editor select, .attack-editor textarea { font-family: var(--font-normal); text-align: left; margin-bottom: 4px; }
 
 .attack-editor span { margin: 0 4px; }
-
-.attack-editor input, .attack-editor select, .attack-editor textarea { text-align: left; margin-bottom: 4px; }
 
 .attack-editor label {
     color: var(--color-text-highlight);
@@ -708,9 +716,9 @@ main span.label {
 
 .inventory-misc input:hover, .inventory-misc input:focus { background: none; box-shadow: none; }
 
-.inventory-misc .credits { border-radius: 4px 0; margin-right: 4px; }
+.inventory-misc .credits { border-radius: 4px 0; margin-right: 2px; }
 
-.inventory-misc .encumbrance { border-radius: 4px 0; margin-left: 4px; }
+.inventory-misc .encumbrance { border-radius: 4px 0; margin-left: 2px; }
 
 .inventory-labels {
     color: var(--color-text);
@@ -739,9 +747,119 @@ main span.label {
     padding: 2px 4px;
 }
 
-.item-name {
+/* Individual item */
+.item-display details summary {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+.item-display details { text-align: center; }
+
+.item-display .item-name {
     margin: 0 4px;
-    text-align: left; }
+    padding: 2px 4px;
+    text-align: left;
+    width: 146.104px; /* force default width */
+}
+
+.item-display span {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    font-family: var(--font-heading);
+    font-size: 90%;
+    overflow: hidden;
+    min-height: 18px;
+    padding: 2px 4px;
+    text-align: center;
+    text-overflow: ellipsis;
+    width: 32.521px;
+}
+
+span.item-description {
+    background: none;
+    padding: 0;
+    font-family: var(--font-normal);
+    white-space: pre-wrap;
+}
+
+.item:hover .item-description { background: none; box-shadow: none; }
+
+/* Item Editor */
+.item-editor {
+    background-color: var(--color-container-background);
+    border-radius: 4px 0;
+    display: none;
+    margin: 0;
+    padding: 4px 6px;
+    width: 100%;
+}
+
+.item-editor:hover { background-color: var(--color-container-highlight); }
+
+.item-editor div { display: flex; align-items: center; flex-direction: row; }
+
+.item-editor div div { flex-direction: column; width: 50%; }
+
+.item-editor div div input { width: 114px !important; } /* 100% - 2px */
+
+.item-editor div div .item-count { margin-right: 2px; }
+
+.item-editor div div .item-weight { margin-left: 2px; }
+
+.item-editor input, .item-editor textarea,
+.item-editor input:hover, .item-editor textarea:hover,
+.item-editor input:focus, .item-editor textarea:focus {
+    appearance: none;
+    background: white !important;
+    border: none;
+    box-shadow: none !important;
+    color: black !important;
+    outline: none;
+}
+
+.item-editor input, .item-editor textarea { font-family: var(--font-normal); text-align: left; margin-bottom: 4px; }
+
+.item-editor label {
+    color: var(--color-text-highlight);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: -2px;
+    padding: 0;
+}
+
+.item-editor textarea { border-radius: 4px 0 0; box-sizing: border-box; margin: 2px auto 0; }
+
+.item-edit-toggle:hover ~ .item-editor { background-color: var(--color-container-highlight); }
+
+.item-edit-toggle {
+    appearance:none;
+    background:none !important;
+    border:none;
+    box-shadow:none !important;
+    opacity: 0;
+    outline: none !important;
+    position: absolute;
+    right: 4px;
+    transition: opacity .2s ease-in, opacity 1s ease-out !important;
+    z-index: 20;
+}
+
+.item-edit-toggle::after { font-family: "Pictos"; font-size: 13px; content: "("; /* locked */ }
+
+.item-edit-toggle:checked::after { content: ")"; /* unlocked */ position: relative; left: 1px; }
+
+.item:hover .item-edit-toggle { opacity: 1; }
+
+.item-edit-toggle:hover::after { color: var(--color-text-highlight); }
+
+.item-edit-toggle:checked ~ .item { background-color: var(--color-container-background); }
+
+.item-edit-toggle:checked ~ .item:hover { background-color: var(--color-container-highlight); }
+
+.item-edit-toggle:checked ~ .item-editor { display: block; }
+
+.item-edit-toggle:checked ~ .item-display { display: none; }
 
 /* ------------------ */
 /* ---- COLUMN 3 ---- */
@@ -1112,6 +1230,8 @@ main input,
 .attack-editor,
 .credits,
 .encumbrance,
+.item details summary span,
+.item-editor,
 .container-resources .resource,
 .trait,
 .power span,
@@ -1152,10 +1272,12 @@ main input:hover, main input:focus,
 .container-hp .hit-dice:hover,
 .container-hp .death-saves:hover,
 .container-inventory .item:hover input,
+.container-inventory .item:hover details summary span,
 .attack:hover input,
 .attack-editor:hover, .attack-edit-toggle:hover ~ .attack-editor,
 .credits:hover,
 .encumbrance:hover,
+.item-editor:hover, .item-edit-toggle:hover ~ .item-editor,
 .container-resources .resource:hover,
 .trait:hover,
 .power:hover span {
@@ -1178,6 +1300,7 @@ main input:hover, main input:focus,
 .other-proficiencies:hover input, .other-proficiencies:hover span.label,
 .credits:hover input, .credits:hover span.label,
 .encumbrance:hover input, .encumbrance:hover span.label,
+.item:hover span,
 .container-resources .resource:hover input, .container-resources .resource:hover span.label,
 .trait:hover, .trait:hover .trait-source, .trait:hover .trait-name,
 .trait-editor span.label { color: var(--color-text-highlight); }

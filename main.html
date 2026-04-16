@@ -99,7 +99,8 @@
                     <input class="expertise" type="checkbox" name="attr_investigation_expert"><input class="proficiency" type="checkbox" name="attr_investigation_prof"><input type="number" name="attr_investigation"><span class="label">INVESTIGATION</span>
                     <input class="expertise" type="checkbox" name="attr_lore_expert"><input class="proficiency" type="checkbox" name="attr_lore_prof"><input type="number" name="attr_lore"><span class="label">LORE</span>
                     <input class="expertise" type="checkbox" name="attr_nature_expert"><input class="proficiency" type="checkbox" name="attr_nature_prof"><input type="number" name="attr_nature"><span class="label">NATURE</span>
-                    <input class="expertise" type="checkbox" name="attr_piloting_expert"><input class="proficiency" type="checkbox" name="attr_piloting_prof"><input type="number" name="attr_piloting"><span class="label">PILOTING</span>
+                    <input type="checkbox" name="attr_piloting_cha_mode">
+                    <input class="expertise piloting-int" type="checkbox" name="attr_piloting_expert"><input class="proficiency piloting-int" type="checkbox" name="attr_piloting_prof"><input class="piloting-int" type="number" name="attr_piloting"><span class="label piloting-int">PILOTING</span>
                     <input class="expertise" type="checkbox" name="attr_technology_expert"><input class="proficiency" type="checkbox" name="attr_technology_prof"><input type="number" name="attr_technology"><span class="label">TECHNOLOGY</span>
                 </div>
             </div>
@@ -130,6 +131,8 @@
                     <input class="expertise" type="checkbox" name="attr_intimidation_expert"><input class="proficiency" type="checkbox" name="attr_intimidation_prof"><input type="number" name="attr_intimidation"><span class="label">INTIMIDATION</span>
                     <input class="expertise" type="checkbox" name="attr_performance_expert"><input class="proficiency" type="checkbox" name="attr_performance_prof"><input type="number" name="attr_performance"><span class="label">PERFORMANCE</span>
                     <input class="expertise" type="checkbox" name="attr_persuasion_expert"><input class="proficiency" type="checkbox" name="attr_persuasion_prof"><input type="number" name="attr_persuasion"><span class="label">PERSUASION</span>
+                    <input type="checkbox" name="attr_piloting_cha_mode">
+                    <input class="expertise piloting-cha" type="checkbox" name="attr_piloting_cha_expert"><input class="proficiency piloting-cha" type="checkbox" name="attr_piloting_cha_prof"><input class="piloting-cha" type="number" name="attr_piloting_cha"><span class="label piloting-cha">PILOTING</span>
                 </div>
             </div>
             <div class="container-misc">
@@ -137,9 +140,14 @@
             </div>
         </div>
         <div class="container-other">
-            <div class="other-proficiencies">
+            <!-- <div class="other-proficiencies">
                 <textarea name="attr_other_proficiencies"></textarea>
-            </div>
+            </div> -->
+            <fieldset class="repeating_other_proficiencies">
+                <div class="other-proficiency">
+                    <input type="text" name="attr_entry">
+                </div>
+            </fieldset>
             <span class="label">OTHER PROFICIENCIES</span>
         </div>
     </div>
@@ -244,6 +252,7 @@
                         <div>
                             <input type="hidden" name="attr_attack">
                             <select name="attr_ability">
+                                <option value="none">None</option>
                                 <option value="strength">Strength</option>
                                 <option value="dexterity">Dexterity</option>
                                 <option value="constitution">Constitution</option>
@@ -252,19 +261,20 @@
                                 <option value="charisma">Charisma</option>
                             </select>
                             <span>+</span>
-                            <input type="number" name="attr_misc_attack">
+                            <input type="number" name="attr_misc_attack" value="0">
                             <span>+</span>
                             <select name="attr_proficiency">
                                 <option value="prof">Proficiency</option>
                                 <option value="0">0</option>
                             </select>
                         </div>
-                        <label>DAMAGE</label>
+                        <label>DAMAGE:</label>
                         <div>
                             <input type="hidden" name="attr_damage">
                             <input type="text" name="attr_base_damage">
                             <span>+</span>
                             <select name="attr_damage_ability">
+                                <option value="none">None</option>
                                 <option value="strength">Strength</option>
                                 <option value="dexterity">Dexterity</option>
                                 <option value="constitution">Constitution</option>
@@ -273,7 +283,7 @@
                                 <option value="charisma">Charisma</option>
                             </select>
                             <span>+</span>
-                            <input type="number" name="attr_misc_damage">
+                            <input type="number" name="attr_misc_damage" value="0">
                         </div>
                         <label>TYPE:</label>
                         <select name="attr_damage_type">
@@ -316,9 +326,33 @@
             </div>
             <fieldset class="repeating_inventory">
                 <div class="item">
-                    <input class="item-count" type="number" name="attr_count">
-                    <input class="item-name" type="text" name="attr_name">
-                    <input class="item-weight" type="number" name="attr_weight" step=".01">
+                    <input type="checkbox" class="item-edit-toggle"> <!-- Edit Toggle -->
+                    <div class="item-display"> <!-- Display Mode -->
+                        <details>
+                        <summary>
+                            <input class="item-count" type="number" name="attr_count">
+                            <span class="item-name" type="text" name="attr_name"></span>
+                            <span class="item-weight" type="number" name="attr_weight" step=".01"></span>
+                        </summary>
+                        <span class="item-description" type="text" name="attr_description"></span>
+                        </details>
+                    </div>
+                    <div class="item-editor">
+                        <label>NAME:</label>
+                        <input class="item-name" type="text" name="attr_name">
+                        <div>
+                            <div>
+                                <label>COUNT:</label>
+                                <input class="item-count" type="number" name="attr_count">
+                            </div>
+                            <div>
+                                <label>WEIGHT:</label>
+                                <input class="item-weight" type="number" name="attr_weight" step=".01">
+                            </div>
+                        </div>
+                        <label>DESCRIPTION:</label>
+                        <textarea name="attr_description"></textarea>
+                    </div>
                 </div>
             </fieldset>
             <span class="label">INVENTORY</span>
@@ -425,7 +459,7 @@
                 <div class="side-by-side">
                     <input type="number" name="attr_tech_points">
                     <span>/</span>
-                    <input type="number" name="attr_tech_points_total" readonly>
+                    <input type="number" name="attr_tech_points_total">
                 </div>
                 <span class="label">TECH POINTS</span>
             </div>
@@ -1193,6 +1227,7 @@ const skillToAbility = {
     lore: "int",
     nature: "int",
     piloting: "int",
+    piloting_cha: "cha",
     technology: "int",
     animal_handling: "wis",
     insight: "wis",
